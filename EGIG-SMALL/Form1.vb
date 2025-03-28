@@ -40,41 +40,68 @@ Public Class Form1
     Private Sub serialPort1_DataReceived(sender As Object, e As SerialDataReceivedEventArgs) Handles SerialPort1.DataReceived
         Try
             Dim receivedData As String = SerialPort1.ReadLine() ' Read data until a newline character
-            parseData(receivedData)
+
+            If receivedData Like "*MD_1*" Then
+
+                parseData(receivedData)
+            Else
+                displayRTB(receivedData)
+            End If
+
 
             'Me.Invoke(Sub() TextBox1.AppendText("Received: " & receivedData & vbCrLf)) ' Update TextBox1 on the UI thread
-            Me.Invoke(Sub() TextBox1.AppendText(receivedData & vbCrLf)) ' Update TextBox1 on the UI thread
+            'Me.Invoke(Sub() TextBox1.AppendText(receivedData & vbCrLf)) ' Update TextBox1 on the UI thread
         Catch ex As Exception
-            Me.Invoke(Sub() TextBox1.AppendText("Error receiving data: " & ex.Message & vbCrLf))
+            'Me.Invoke(Sub() TextBox1.AppendText("Error receiving data: " & ex.Message & vbCrLf))
         End Try
     End Sub
     Function parseData(ByVal data As String)
         Dim inputString As String = data
         Dim parts() As String = inputString.Split(","c)
 
-        MessageBox.Show(parts(0), "Scan ID") ' SCAN ID
-        MessageBox.Show(parts(1), "Date") ' DATE
-        MessageBox.Show(parts(2), "Time") ' TIME
-        MessageBox.Show(parts(3), "Temperature") ' TEMP
-        MessageBox.Show(parts(4), "Humidity") ' HUMIDITY
-        MessageBox.Show(parts(5), "FW Version") ' FW version
-        MessageBox.Show(parts(6), "Test Volatge") ' Test Voltage
-        MessageBox.Show(parts(7), "Test Result") ' Test result
-        ' RED CODE
+        Dim displayString As String = parts(1) & "  " & parts(2) & "  " & parts(3) & "  " & parts(4) & "  " & parts(5) & "  " & parts(6) & "  " & parts(7) & "  " & parts(8) ' Use spaces for separation
+        ' Dim displayString As String = parts(0) & "  " & parts(1) & "  " & parts(2) & "  " & parts(3) & "  " & parts(4) & "  " & parts(5) & "  " & parts(6) & "  " & parts(7) ' Use spaces for separation
+        ' Use Invoke to update ListBox1 on the UI thread
+        Me.Invoke(Sub()
+                      'ListView1.Items.Clear()
+                      ListBox1.Items.Add(displayString)
+                  End Sub)
 
-        'data.timestamp = millis() / 1000;
-        'data.temperature = Random(0, 255);
-        'data.humidity = Random(0, 100);
-        'data.test_voltage = Random(0, 2000);
-        'data.resistance = Random(0, 4294967295);
+        ' Use Invoke to update ListView1 on the UI thread
+        Me.Invoke(Sub()
 
 
+                      ' Create a new ListViewItem
+                      Dim item As New ListViewItem(parts(1)) ' SCAN ID (1st column)
 
+                      ' Add subitems for the other columns
 
+                      item.SubItems.Add(parts(2)) ' Date (2nd column)
+                      item.SubItems.Add(parts(3)) ' Time (3rd column)
+                      item.SubItems.Add(parts(4)) ' TEMP (4th column)
+                      item.SubItems.Add(parts(5)) ' HUMIDITY (5th column)
+                      item.SubItems.Add(parts(6)) ' FW ver (6th column)
+                      item.SubItems.Add(parts(7)) ' Test Voltage (7th column)
+                      item.SubItems.Add(parts(8)) ' Test Result (8th column)
 
+                      ' Add the item to the ListView
+                      ListView1.Items.Add(item)
+                      If ListView1.Items.Count > 0 Then
+                          ListView1.Items(ListView1.Items.Count - 1).EnsureVisible()
+                      End If
+                  End Sub)
+    End Function
+    Function displayRTB(ByVal myData As String)
+        Me.Invoke(Sub()
+                      Dim parts2() As String = myData.Split(","c)
+                      rtbData.AppendText(parts2(1))
+                      rtbData.SelectionStart = rtbData.TextLength
+                      rtbData.ScrollToCaret()
+                      lblPercent.Text = parts2(1)
+
+                  End Sub)
 
     End Function
-
     Private Sub Form1_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         If SerialPort1.IsOpen Then
             SerialPort1.Close()
@@ -83,10 +110,12 @@ Public Class Form1
 
     Private Sub btnSendata_Click(sender As Object, e As EventArgs) Handles btnSendata.Click
         TextBox1.Text = ""
+        ListView1.Items.Clear()
 
         Try
             If SerialPort1.IsOpen Then
-                SerialPort1.Write("CMD_EEPROM" & vbCr) ' Send the text from TextBox2
+                'SerialPort1.Write("CMD_EEPROM" & vbCr) ' Send the text from TextBox2
+                SerialPort1.Write("e" & vbCr) ' Send the text from TextBox2
             Else
                 TextBox1.AppendText("Serial port is not open." & vbCrLf)
             End If
@@ -95,5 +124,21 @@ Public Class Form1
         End Try
 
 
+    End Sub
+
+    Private Sub btnEraseRead_Click(sender As Object, e As EventArgs) Handles btnEraseRead.Click
+        TextBox1.Text = ""
+        ListView1.Items.Clear()
+
+        Try
+            If SerialPort1.IsOpen Then
+                'SerialPort1.Write("CMD_EEPROM" & vbCr) ' Send the text from TextBox2
+                SerialPort1.Write("6" & vbCr) ' Send the text from TextBox2
+            Else
+                TextBox1.AppendText("Serial port is not open." & vbCrLf)
+            End If
+        Catch ex As Exception
+            TextBox1.AppendText("Error sending data: " & ex.Message & vbCrLf)
+        End Try
     End Sub
 End Class
