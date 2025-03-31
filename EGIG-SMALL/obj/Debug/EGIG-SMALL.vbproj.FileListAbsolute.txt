@@ -10,3 +10,15 @@ C:\Users\Bench1\Documents\Visual Studio 2022\Projects\EGIG-SMALL\EGIG-SMALL\obj\
 C:\Users\Bench1\Documents\Visual Studio 2022\Projects\EGIG-SMALL\EGIG-SMALL\obj\Debug\EGIG-SMALL.exe
 C:\Users\Bench1\Documents\Visual Studio 2022\Projects\EGIG-SMALL\EGIG-SMALL\obj\Debug\EGIG-SMALL.xml
 C:\Users\Bench1\Documents\Visual Studio 2022\Projects\EGIG-SMALL\EGIG-SMALL\obj\Debug\EGIG-SMALL.pdb
+C:\Users\Mikey\OneDrive\Documents\Visual Studio 2022\Projects\EGIG-VBNET\EGIG-SMALL\bin\Debug\EGIG-SMALL.exe.config
+C:\Users\Mikey\OneDrive\Documents\Visual Studio 2022\Projects\EGIG-VBNET\EGIG-SMALL\bin\Debug\EGIG-SMALL.exe
+C:\Users\Mikey\OneDrive\Documents\Visual Studio 2022\Projects\EGIG-VBNET\EGIG-SMALL\bin\Debug\EGIG-SMALL.pdb
+C:\Users\Mikey\OneDrive\Documents\Visual Studio 2022\Projects\EGIG-VBNET\EGIG-SMALL\bin\Debug\EGIG-SMALL.xml
+C:\Users\Mikey\OneDrive\Documents\Visual Studio 2022\Projects\EGIG-VBNET\EGIG-SMALL\obj\Debug\EGIG-SMALL.vbproj.AssemblyReference.cache
+C:\Users\Mikey\OneDrive\Documents\Visual Studio 2022\Projects\EGIG-VBNET\EGIG-SMALL\obj\Debug\EGIG_SMALL.Form1.resources
+C:\Users\Mikey\OneDrive\Documents\Visual Studio 2022\Projects\EGIG-VBNET\EGIG-SMALL\obj\Debug\EGIG_SMALL.Resources.resources
+C:\Users\Mikey\OneDrive\Documents\Visual Studio 2022\Projects\EGIG-VBNET\EGIG-SMALL\obj\Debug\EGIG-SMALL.vbproj.GenerateResource.cache
+C:\Users\Mikey\OneDrive\Documents\Visual Studio 2022\Projects\EGIG-VBNET\EGIG-SMALL\obj\Debug\EGIG-SMALL.vbproj.CoreCompileInputs.cache
+C:\Users\Mikey\OneDrive\Documents\Visual Studio 2022\Projects\EGIG-VBNET\EGIG-SMALL\obj\Debug\EGIG-SMALL.exe
+C:\Users\Mikey\OneDrive\Documents\Visual Studio 2022\Projects\EGIG-VBNET\EGIG-SMALL\obj\Debug\EGIG-SMALL.xml
+C:\Users\Mikey\OneDrive\Documents\Visual Studio 2022\Projects\EGIG-VBNET\EGIG-SMALL\obj\Debug\EGIG-SMALL.pdb
