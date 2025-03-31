@@ -62,9 +62,9 @@ Partial Class Form1
         Me.btnPrintCAL = New System.Windows.Forms.Button()
         Me.myProgressBar1 = New System.Windows.Forms.ProgressBar()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.lblRecordsPerSecond = New System.Windows.Forms.Label()
         Me.lblEEusage = New System.Windows.Forms.Label()
         Me.lblPerSecond = New System.Windows.Forms.Label()
-        Me.lblRecordsPerSecond = New System.Windows.Forms.Label()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
@@ -226,7 +226,7 @@ Partial Class Form1
         '
         Me.lblRecordCount.AutoSize = True
         Me.lblRecordCount.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblRecordCount.Location = New System.Drawing.Point(6, 75)
+        Me.lblRecordCount.Location = New System.Drawing.Point(4, 75)
         Me.lblRecordCount.Name = "lblRecordCount"
         Me.lblRecordCount.Size = New System.Drawing.Size(15, 20)
         Me.lblRecordCount.TabIndex = 9
@@ -255,7 +255,7 @@ Partial Class Form1
         '
         Me.lblCALdate.AutoSize = True
         Me.lblCALdate.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblCALdate.Location = New System.Drawing.Point(69, 104)
+        Me.lblCALdate.Location = New System.Drawing.Point(69, 84)
         Me.lblCALdate.Name = "lblCALdate"
         Me.lblCALdate.Size = New System.Drawing.Size(16, 20)
         Me.lblCALdate.TabIndex = 9
@@ -265,7 +265,7 @@ Partial Class Form1
         '
         Me.lblMFGdate.AutoSize = True
         Me.lblMFGdate.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblMFGdate.Location = New System.Drawing.Point(69, 84)
+        Me.lblMFGdate.Location = New System.Drawing.Point(69, 67)
         Me.lblMFGdate.Name = "lblMFGdate"
         Me.lblMFGdate.Size = New System.Drawing.Size(16, 20)
         Me.lblMFGdate.TabIndex = 8
@@ -275,7 +275,7 @@ Partial Class Form1
         '
         Me.lblSerialNumber.AutoSize = True
         Me.lblSerialNumber.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblSerialNumber.Location = New System.Drawing.Point(69, 64)
+        Me.lblSerialNumber.Location = New System.Drawing.Point(69, 50)
         Me.lblSerialNumber.Name = "lblSerialNumber"
         Me.lblSerialNumber.Size = New System.Drawing.Size(16, 20)
         Me.lblSerialNumber.TabIndex = 7
@@ -285,7 +285,7 @@ Partial Class Form1
         '
         Me.lblPCBver.AutoSize = True
         Me.lblPCBver.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblPCBver.Location = New System.Drawing.Point(69, 44)
+        Me.lblPCBver.Location = New System.Drawing.Point(69, 33)
         Me.lblPCBver.Name = "lblPCBver"
         Me.lblPCBver.Size = New System.Drawing.Size(16, 20)
         Me.lblPCBver.TabIndex = 6
@@ -295,7 +295,7 @@ Partial Class Form1
         '
         Me.lblFWver.AutoSize = True
         Me.lblFWver.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblFWver.Location = New System.Drawing.Point(69, 27)
+        Me.lblFWver.Location = New System.Drawing.Point(69, 16)
         Me.lblFWver.Name = "lblFWver"
         Me.lblFWver.Size = New System.Drawing.Size(16, 20)
         Me.lblFWver.TabIndex = 5
@@ -304,7 +304,7 @@ Partial Class Form1
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(10, 104)
+        Me.Label5.Location = New System.Drawing.Point(8, 84)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(53, 13)
         Me.Label5.TabIndex = 4
@@ -313,7 +313,7 @@ Partial Class Form1
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(7, 84)
+        Me.Label4.Location = New System.Drawing.Point(6, 67)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(56, 13)
         Me.Label4.TabIndex = 3
@@ -322,7 +322,7 @@ Partial Class Form1
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(6, 64)
+        Me.Label3.Location = New System.Drawing.Point(6, 50)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(22, 13)
         Me.Label3.TabIndex = 2
@@ -331,7 +331,7 @@ Partial Class Form1
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(6, 44)
+        Me.Label2.Location = New System.Drawing.Point(7, 33)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(46, 13)
         Me.Label2.TabIndex = 1
@@ -340,7 +340,7 @@ Partial Class Form1
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(6, 27)
+        Me.Label1.Location = New System.Drawing.Point(6, 16)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(42, 13)
         Me.Label1.TabIndex = 0
@@ -408,6 +408,15 @@ Partial Class Form1
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "EEPROM Status"
         '
+        'lblRecordsPerSecond
+        '
+        Me.lblRecordsPerSecond.AutoSize = True
+        Me.lblRecordsPerSecond.Location = New System.Drawing.Point(5, 95)
+        Me.lblRecordsPerSecond.Name = "lblRecordsPerSecond"
+        Me.lblRecordsPerSecond.Size = New System.Drawing.Size(11, 13)
+        Me.lblRecordsPerSecond.TabIndex = 15
+        Me.lblRecordsPerSecond.Text = "*"
+        '
         'lblEEusage
         '
         Me.lblEEusage.AutoSize = True
@@ -426,15 +435,6 @@ Partial Class Form1
         Me.lblPerSecond.Size = New System.Drawing.Size(39, 13)
         Me.lblPerSecond.TabIndex = 15
         Me.lblPerSecond.Text = "Label6"
-        '
-        'lblRecordsPerSecond
-        '
-        Me.lblRecordsPerSecond.AutoSize = True
-        Me.lblRecordsPerSecond.Location = New System.Drawing.Point(7, 99)
-        Me.lblRecordsPerSecond.Name = "lblRecordsPerSecond"
-        Me.lblRecordsPerSecond.Size = New System.Drawing.Size(11, 13)
-        Me.lblRecordsPerSecond.TabIndex = 15
-        Me.lblRecordsPerSecond.Text = "*"
         '
         'Form1
         '
