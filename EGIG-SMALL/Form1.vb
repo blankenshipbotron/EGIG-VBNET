@@ -7,6 +7,14 @@ Public Class Form1
     Dim myRecordCount As Int32 = 0
     Private recordCountPerSecond As Integer = 0
     Private lastSecond As Integer = -1
+    ' Create folder vars
+    Dim gProgramDataFolder As String = My.Application.GetEnvironmentVariable("ProgramData") & "\Botron\B8590"
+    Dim gDataPathFW As String = My.Application.GetEnvironmentVariable("ProgramData") & "\Botron\B8590\FW"
+    Dim gDataPathLOGS As String = My.Application.GetEnvironmentVariable("ProgramData") & "\Botron\B8590\LOGS"
+    Dim gDataPathBIN As String = My.Application.GetEnvironmentVariable("ProgramData") & "\Botron\B8590\BIN"
+    Dim gDataPathTMP As String = My.Application.GetEnvironmentVariable("ProgramData") & "\Botron\B8590\TMP"
+    ' Declare detailsForm as a class-level variable
+    Private detailsForm As Form2
     Private Sub btnConnect_Click(sender As Object, e As EventArgs) Handles btnConnect.Click
         Try
             If SerialPort1.IsOpen Then
@@ -47,6 +55,20 @@ Public Class Form1
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
         ' Populate the combo box with available serial ports
         ComboBox1.Items.AddRange(SerialPort.GetPortNames())
+
+        If Not System.IO.Directory.Exists(gDataPathFW) Then
+            System.IO.Directory.CreateDirectory(gDataPathFW)    ' Create C:\ProgramData\Botron\B8590\FW
+        End If
+        If Not System.IO.Directory.Exists(gDataPathLOGS) Then
+            System.IO.Directory.CreateDirectory(gDataPathLOGS)  ' Create C:\ProgramData\Botron\B8590\LOGS
+        End If
+        If Not System.IO.Directory.Exists(gDataPathBIN) Then
+            System.IO.Directory.CreateDirectory(gDataPathBIN)    ' Create C:\ProgramData\Botron\B8590\BIN
+        End If
+        If Not System.IO.Directory.Exists(gDataPathTMP) Then
+            System.IO.Directory.CreateDirectory(gDataPathTMP)    ' Create C:\ProgramData\Botron\B8590\TMP
+        End If
+
     End Sub
 
     Private Sub serialPort1_DataReceived(sender As Object, e As SerialDataReceivedEventArgs) Handles SerialPort1.DataReceived
@@ -110,8 +132,8 @@ Public Class Form1
                           item.SubItems.Add(parts(8)) ' Test Result (8th column)
                           item.SubItems.Add(myRecordCount) ' Record Number
                           Dim EEusage As Int16 = CalculateEEPROMUsagePercentage(myRecordCount)
-                          lblRecordCount.Text = myRecordCount & " of 1820 records used"
-                          lblEEusage.Text = "EEPROM USED " & EEusage & "%"
+                          lblRecordCount.Text = myRecordCount & " of 1820"
+                          lblEEusage.Text = EEusage & "%"
 
 
                           ProcessIncomingData(myRecordCount)
@@ -140,7 +162,7 @@ Public Class Form1
                           rtbData.AppendText(parts2(1))
                           rtbData.SelectionStart = rtbData.TextLength
                           rtbData.ScrollToCaret()
-                          lblPercent.Text = parts2(1)
+                          'lblPercent.Text = parts2(1)
                       End If
 
 
@@ -155,7 +177,7 @@ Public Class Form1
                           lblSerialNumber.Text = "*"
                           lblMFGdate.Text = "*"
                           lblCALdate.Text = "*"
-                          lblCALstatus.Text = "*"
+                          'lblCALstatus.Text = "*"
                           lblCALstatus2.Text = "*"
                           lblRecordCount.Text = "*"
                           lblEEusage.Text = "*"
@@ -173,8 +195,8 @@ Public Class Form1
                           If daysUntilNextCalibration > 0 Then
                               'Console.WriteLine("Days until one year from " & calibrationDate & ": " & daysUntilNextCalibration)
                               'MessageBox.Show("Days until one year from " & calibrationDate & ": " & daysUntilNextCalibration)
-                              lblCALstatus.Text = ("Current CAL Date " & calibrationDate)
-                              lblCALstatus2.Text = ("Next CAL in : " & daysUntilNextCalibration & " Days")
+                              'lblCALstatus.Text = ("Current CAL Date " & calibrationDate)
+                              lblCALstatus2.Text = (daysUntilNextCalibration & " Days")
                           ElseIf daysUntilNextCalibration = 0 Then
                               Console.WriteLine("One year from " & calibrationDate & " is today!")
                           Else
@@ -195,7 +217,8 @@ Public Class Form1
     End Sub
 
     Private Sub btnSendata_Click(sender As Object, e As EventArgs) Handles btnSendata.Click
-        'TextBox1.Text = ""
+
+        lblRecordsPerSecond.Text = "*"
         myRecordCount = 0
         ListView1.Items.Clear()
 
@@ -328,6 +351,238 @@ Public Class Form1
         End If
 
         ' ... Rest of your data processing code ...
+    End Sub
+
+    Private Sub btnDataFolders_Click(sender As Object, e As EventArgs) Handles btnDataFolders.Click
+        Process.Start(gProgramDataFolder)
+    End Sub
+
+
+
+
+
+    'Private Sub ListView1_Click(sender As Object, e As EventArgs) Handles ListView1.Click
+    'If ListView1.SelectedItems.Count > 0 Then
+    '' Get the selected ListViewItem
+    'Dim selectedItem As ListViewItem = ListView1.SelectedItems(0)
+
+    ' Check if the details form is already open
+    'If detailsForm IsNot Nothing AndAlso Not detailsForm.IsDisposed Then
+    '            ' Update the existing details form
+    '            UpdateDetailsForm(detailsForm, selectedItem)
+    'Else
+    ' Create a new instance of the details form
+    '            detailsForm = New Form2()
+    '           UpdateDetailsForm(detailsForm, selectedItem)
+    ''           detailsForm.Show() ' Use Show() for non-modal behavior
+    'End If
+    'nd If
+    'End Sub
+
+    Private Sub ListView1_Click(sender As Object, e As EventArgs) Handles ListView1.Click
+        If ListView1.SelectedItems.Count > 0 Then
+            ' Get the selected ListViewItem
+            Dim selectedItem As ListViewItem = ListView1.SelectedItems(0)
+
+            ' Check if the details form is already open
+            If detailsForm IsNot Nothing AndAlso Not detailsForm.IsDisposed Then
+                ' Update the existing details form
+                UpdateDetailsForm(detailsForm, selectedItem)
+            Else
+                ' Create a new instance of the details form
+                detailsForm = New Form2()
+                UpdateDetailsForm(detailsForm, selectedItem)
+
+                ' Position Form2 next to Form1
+                detailsForm.StartPosition = FormStartPosition.Manual
+                detailsForm.Location = New Point(Me.Location.X + Me.Width, Me.Location.Y)
+
+                detailsForm.Show() ' Use Show() for non-modal behavior
+            End If
+        End If
+    End Sub
+
+    ' Helper subroutine to update the details form
+
+    Private Sub UpdateDetailsFormOLD(ByVal detailsForm As Form2, ByVal selectedItem As ListViewItem)
+        detailsForm.lblScanID.Text = "*"
+        detailsForm.lblDate.Text = "*"
+        detailsForm.lblTime.Text = "*"
+        detailsForm.lblTemp.Text = "*"
+        detailsForm.lblHumidity.Text = "*"
+        detailsForm.lblFWVer.Text = "*"
+        detailsForm.lblTestVoltage.Text = "*"
+        detailsForm.lblTestResult.Text = "*"
+        detailsForm.lblNumber.Text = "*"
+
+        detailsForm.lblScanID.Text = selectedItem.Text
+        detailsForm.lblDate.Text = selectedItem.SubItems(1).Text
+        detailsForm.lblTime.Text = selectedItem.SubItems(2).Text
+        detailsForm.lblTemp.Text = selectedItem.SubItems(3).Text
+        detailsForm.lblHumidity.Text = selectedItem.SubItems(4).Text
+        detailsForm.lblFWVer.Text = selectedItem.SubItems(5).Text
+        detailsForm.lblTestVoltage.Text = selectedItem.SubItems(6).Text
+        detailsForm.lblTestResult.Text = selectedItem.SubItems(7).Text
+        detailsForm.lblNumber.Text = selectedItem.SubItems(8).Text
+    End Sub
+    ' Helper subroutine to update the details form
+    Private Sub UpdateDetailsForm(ByVal detailsForm As Form2, ByVal selectedItem As ListViewItem)
+        detailsForm.lblScanID.Text = "*"
+        detailsForm.lblDate.Text = "*"
+        detailsForm.lblTime.Text = "*"
+        detailsForm.lblTemp.Text = "*"
+        detailsForm.lblHumidity.Text = "*"
+        detailsForm.lblFWVer.Text = "*"
+        detailsForm.lblTestVoltage.Text = "*"
+        detailsForm.lblTestResult.Text = "*"
+        detailsForm.lblNumber.Text = "*"
+        detailsForm.lblSciPrefix.Text = "*"
+        detailsForm.lblNumber.Text = "*"
+        detailsForm.lblCondRange.Text = "*"
+        lblRecordsPerSecond.Text = "*"
+
+
+        detailsForm.lblScanID.Text = selectedItem.Text
+        detailsForm.lblDate.Text = selectedItem.SubItems(1).Text
+        detailsForm.lblTime.Text = selectedItem.SubItems(2).Text
+        detailsForm.lblTemp.Text = selectedItem.SubItems(3).Text
+        detailsForm.lblHumidity.Text = selectedItem.SubItems(4).Text
+        detailsForm.lblFWVer.Text = selectedItem.SubItems(5).Text
+        detailsForm.lblTestVoltage.Text = selectedItem.SubItems(6).Text
+        detailsForm.lblTestResult.Text = selectedItem.SubItems(7).Text
+        detailsForm.lblNumber.Text = selectedItem.SubItems(8).Text
+        'lblCondRange
+        'lblSciNotation
+        Dim myDecimalSciNot As Decimal
+        myDecimalSciNot = Decimal.Parse(detailsForm.lblTestResult.Text)
+        detailsForm.lblSciNotation.Text = FormatScientificNotation(myDecimalSciNot, 2)
+        ' SCIENTIFIC PREFIX K M G T
+        Dim myDecimalSciPrefix As Decimal
+        myDecimalSciPrefix = Decimal.Parse(detailsForm.lblTestResult.Text)
+        detailsForm.lblSciPrefix.Text = FormatTeraOhms(myDecimalSciPrefix, 2)
+        ' Determin CONDUCTIVE DISSIPATIVE INSULATIVE
+        Dim myDecimaCondRange As Decimal
+        myDecimaCondRange = Decimal.Parse(detailsForm.lblTestResult.Text)
+        If myDecimaCondRange > 1 And myDecimaCondRange <= 1000000000 Then
+            detailsForm.lblCondRange.BackColor = Color.Black
+            detailsForm.lblCondRange.ForeColor = Color.LightGreen
+            detailsForm.lblCondRange.Text = "CONDUCTIVE"
+        End If
+        If myDecimaCondRange > 1000000000 And myDecimaCondRange < 1000000000000 Then
+            detailsForm.lblCondRange.BackColor = Color.Black
+            detailsForm.lblCondRange.ForeColor = Color.Yellow
+            detailsForm.lblCondRange.Text = "DISSIPATIVE"
+        End If
+
+
+
+    End Sub
+
+    ' Handle Form2 closing to clean up
+    Private Sub Form1_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
+        If detailsForm IsNot Nothing AndAlso Not detailsForm.IsDisposed Then
+            detailsForm.Close()
+            detailsForm.Dispose()
+            detailsForm = Nothing
+        End If
+    End Sub
+
+    Private Sub ListView1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListView1.SelectedIndexChanged
+
+    End Sub
+
+    Private Sub ListView1_KeyDown(sender As Object, e As KeyEventArgs) Handles ListView1.KeyDown
+
+        If ListView1.SelectedItems.Count > 0 Then
+            ' Get the selected ListViewItem
+            Dim selectedItem As ListViewItem = ListView1.SelectedItems(0)
+
+            ' Check if the details form is already open
+            If detailsForm IsNot Nothing AndAlso Not detailsForm.IsDisposed Then
+                ' Update the existing details form
+                UpdateDetailsForm(detailsForm, selectedItem)
+            Else
+                ' Create a new instance of the details form
+                detailsForm = New Form2()
+                UpdateDetailsForm(detailsForm, selectedItem)
+
+                ' Position Form2 next to Form1
+                detailsForm.StartPosition = FormStartPosition.Manual
+                detailsForm.Location = New Point(Me.Location.X + Me.Width, Me.Location.Y)
+
+                detailsForm.Show() ' Use Show() for non-modal behavior
+            End If
+        End If
+    End Sub
+
+    Private Sub ListView1_DragDrop(sender As Object, e As DragEventArgs) Handles ListView1.DragDrop
+
+    End Sub
+
+    Private Sub ListView1_KeyUp(sender As Object, e As KeyEventArgs) Handles ListView1.KeyUp
+        If ListView1.SelectedItems.Count > 0 Then
+            ' Get the selected ListViewItem
+            Dim selectedItem As ListViewItem = ListView1.SelectedItems(0)
+
+            ' Check if the details form is already open
+            If detailsForm IsNot Nothing AndAlso Not detailsForm.IsDisposed Then
+                ' Update the existing details form
+                UpdateDetailsForm(detailsForm, selectedItem)
+            Else
+                ' Create a new instance of the details form
+                detailsForm = New Form2()
+                UpdateDetailsForm(detailsForm, selectedItem)
+
+                ' Position Form2 next to Form1
+                detailsForm.StartPosition = FormStartPosition.Manual
+                detailsForm.Location = New Point(Me.Location.X + Me.Width, Me.Location.Y)
+
+                detailsForm.Show() ' Use Show() for non-modal behavior
+            End If
+        End If
+    End Sub
+    Private Sub FindArduinoPort()
+        Dim ports() As String = SerialPort.GetPortNames()
+        Dim foundPort As String = ""
+
+        For Each port As String In ports
+            Using serialPort As New SerialPort(port, 115200, Parity.None, 8, StopBits.One)
+                Try
+                    serialPort.Open()
+                    serialPort.WriteLine("WHAT_BOTRON_MODEL_ARE_YOU")
+                    serialPort.ReadTimeout = 1000 ' Set a timeout (1 second in this example)
+                    Dim myReceive As String = serialPort.ReadLine()
+                    MessageBox.Show(serialPort.ReadLine().Trim())
+                    If serialPort.ReadLine().Trim() = "I_AM_B8590" Then
+                        foundPort = port
+                        Exit For ' Found the correct port, exit the loop
+                    End If
+
+                Catch ex As TimeoutException
+                    ' No response from Arduino, move to the next port
+                    Console.WriteLine($"Timeout on port {port}: {ex.Message}")
+                Catch ex As Exception
+                    ' Handle other exceptions (e.g., port already in use)
+                    Console.WriteLine($"Error on port {port}: {ex.Message}")
+                Finally
+                    If serialPort.IsOpen Then
+                        serialPort.Close()
+                    End If
+                End Try
+            End Using
+        Next
+
+        If foundPort <> "" Then
+            MessageBox.Show($"Arduino found on port: {foundPort}")
+            ' Now you can use foundPort for further communication
+            ' ...
+        Else
+            MessageBox.Show("Arduino not found.")
+        End If
+    End Sub
+
+    Private Sub btnFindArduinoPort_Click(sender As Object, e As EventArgs) Handles btnFindArduinoPort.Click
+        FindArduinoPort()
     End Sub
 End Class
 

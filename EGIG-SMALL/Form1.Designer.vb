@@ -43,9 +43,10 @@ Partial Class Form1
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.rtbData = New System.Windows.Forms.RichTextBox()
         Me.btnEraseRead = New System.Windows.Forms.Button()
-        Me.lblPercent = New System.Windows.Forms.Label()
         Me.lblRecordCount = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.lblCALstatus2 = New System.Windows.Forms.Label()
+        Me.Label6 = New System.Windows.Forms.Label()
         Me.lblCALdate = New System.Windows.Forms.Label()
         Me.lblMFGdate = New System.Windows.Forms.Label()
         Me.lblSerialNumber = New System.Windows.Forms.Label()
@@ -56,21 +57,26 @@ Partial Class Form1
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.lblCALstatus2 = New System.Windows.Forms.Label()
-        Me.lblCALstatus = New System.Windows.Forms.Label()
         Me.btnPrintCAL = New System.Windows.Forms.Button()
         Me.myProgressBar1 = New System.Windows.Forms.ProgressBar()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.Label7 = New System.Windows.Forms.Label()
         Me.lblRecordsPerSecond = New System.Windows.Forms.Label()
         Me.lblEEusage = New System.Windows.Forms.Label()
-        Me.lblPerSecond = New System.Windows.Forms.Label()
+        Me.btnDataFolders = New System.Windows.Forms.Button()
+        Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
+        Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.btnFindArduinoPort = New System.Windows.Forms.Button()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
-        Me.GroupBox2.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
+        Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'SerialPort1
@@ -78,9 +84,9 @@ Partial Class Form1
         '
         'btnConnect
         '
-        Me.btnConnect.Location = New System.Drawing.Point(12, 12)
+        Me.btnConnect.Location = New System.Drawing.Point(738, 27)
         Me.btnConnect.Name = "btnConnect"
-        Me.btnConnect.Size = New System.Drawing.Size(75, 23)
+        Me.btnConnect.Size = New System.Drawing.Size(75, 36)
         Me.btnConnect.TabIndex = 0
         Me.btnConnect.Text = "Connect"
         Me.btnConnect.UseVisualStyleBackColor = True
@@ -88,17 +94,17 @@ Partial Class Form1
         'ComboBox1
         '
         Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(104, 14)
+        Me.ComboBox1.Location = New System.Drawing.Point(819, 36)
         Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(121, 21)
+        Me.ComboBox1.Size = New System.Drawing.Size(72, 21)
         Me.ComboBox1.TabIndex = 1
         '
         'btnSendata
         '
         Me.btnSendata.Enabled = False
-        Me.btnSendata.Location = New System.Drawing.Point(268, 6)
+        Me.btnSendata.Location = New System.Drawing.Point(738, 70)
         Me.btnSendata.Name = "btnSendata"
-        Me.btnSendata.Size = New System.Drawing.Size(75, 29)
+        Me.btnSendata.Size = New System.Drawing.Size(75, 36)
         Me.btnSendata.TabIndex = 3
         Me.btnSendata.Text = "Get Data"
         Me.btnSendata.UseVisualStyleBackColor = True
@@ -159,7 +165,7 @@ Partial Class Form1
         'ListBox1
         '
         Me.ListBox1.FormattingEnabled = True
-        Me.ListBox1.Location = New System.Drawing.Point(1020, 14)
+        Me.ListBox1.Location = New System.Drawing.Point(1056, 6)
         Me.ListBox1.Name = "ListBox1"
         Me.ListBox1.Size = New System.Drawing.Size(130, 95)
         Me.ListBox1.TabIndex = 5
@@ -168,7 +174,7 @@ Partial Class Form1
         '
         Me.TabControl1.Controls.Add(Me.TabPage1)
         Me.TabControl1.Controls.Add(Me.TabPage2)
-        Me.TabControl1.Location = New System.Drawing.Point(12, 41)
+        Me.TabControl1.Location = New System.Drawing.Point(8, 31)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
         Me.TabControl1.Size = New System.Drawing.Size(721, 341)
@@ -206,34 +212,27 @@ Partial Class Form1
         '
         'btnEraseRead
         '
-        Me.btnEraseRead.Location = New System.Drawing.Point(867, 16)
+        Me.btnEraseRead.Location = New System.Drawing.Point(897, 95)
         Me.btnEraseRead.Name = "btnEraseRead"
-        Me.btnEraseRead.Size = New System.Drawing.Size(103, 26)
+        Me.btnEraseRead.Size = New System.Drawing.Size(99, 26)
         Me.btnEraseRead.TabIndex = 7
         Me.btnEraseRead.Text = "EEPROM R/W"
         Me.btnEraseRead.UseVisualStyleBackColor = True
         '
-        'lblPercent
-        '
-        Me.lblPercent.AutoSize = True
-        Me.lblPercent.Location = New System.Drawing.Point(545, 16)
-        Me.lblPercent.Name = "lblPercent"
-        Me.lblPercent.Size = New System.Drawing.Size(11, 13)
-        Me.lblPercent.TabIndex = 8
-        Me.lblPercent.Text = "*"
-        '
         'lblRecordCount
         '
         Me.lblRecordCount.AutoSize = True
-        Me.lblRecordCount.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblRecordCount.Location = New System.Drawing.Point(4, 75)
+        Me.lblRecordCount.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblRecordCount.Location = New System.Drawing.Point(112, 75)
         Me.lblRecordCount.Name = "lblRecordCount"
-        Me.lblRecordCount.Size = New System.Drawing.Size(15, 20)
+        Me.lblRecordCount.Size = New System.Drawing.Size(16, 20)
         Me.lblRecordCount.TabIndex = 9
         Me.lblRecordCount.Text = "*"
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.lblCALstatus2)
+        Me.GroupBox1.Controls.Add(Me.Label6)
         Me.GroupBox1.Controls.Add(Me.lblCALdate)
         Me.GroupBox1.Controls.Add(Me.lblMFGdate)
         Me.GroupBox1.Controls.Add(Me.lblSerialNumber)
@@ -244,18 +243,37 @@ Partial Class Form1
         Me.GroupBox1.Controls.Add(Me.Label3)
         Me.GroupBox1.Controls.Add(Me.Label2)
         Me.GroupBox1.Controls.Add(Me.Label1)
-        Me.GroupBox1.Location = New System.Drawing.Point(735, 63)
+        Me.GroupBox1.Location = New System.Drawing.Point(735, 127)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(236, 124)
+        Me.GroupBox1.Size = New System.Drawing.Size(292, 124)
         Me.GroupBox1.TabIndex = 10
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "System Data"
+        '
+        'lblCALstatus2
+        '
+        Me.lblCALstatus2.AutoSize = True
+        Me.lblCALstatus2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblCALstatus2.Location = New System.Drawing.Point(112, 96)
+        Me.lblCALstatus2.Name = "lblCALstatus2"
+        Me.lblCALstatus2.Size = New System.Drawing.Size(16, 20)
+        Me.lblCALstatus2.TabIndex = 11
+        Me.lblCALstatus2.Text = "*"
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(8, 101)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(64, 13)
+        Me.Label6.TabIndex = 10
+        Me.Label6.Text = "CAL Due in "
         '
         'lblCALdate
         '
         Me.lblCALdate.AutoSize = True
         Me.lblCALdate.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblCALdate.Location = New System.Drawing.Point(69, 84)
+        Me.lblCALdate.Location = New System.Drawing.Point(112, 79)
         Me.lblCALdate.Name = "lblCALdate"
         Me.lblCALdate.Size = New System.Drawing.Size(16, 20)
         Me.lblCALdate.TabIndex = 9
@@ -265,7 +283,7 @@ Partial Class Form1
         '
         Me.lblMFGdate.AutoSize = True
         Me.lblMFGdate.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblMFGdate.Location = New System.Drawing.Point(69, 67)
+        Me.lblMFGdate.Location = New System.Drawing.Point(112, 62)
         Me.lblMFGdate.Name = "lblMFGdate"
         Me.lblMFGdate.Size = New System.Drawing.Size(16, 20)
         Me.lblMFGdate.TabIndex = 8
@@ -275,7 +293,7 @@ Partial Class Form1
         '
         Me.lblSerialNumber.AutoSize = True
         Me.lblSerialNumber.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblSerialNumber.Location = New System.Drawing.Point(69, 50)
+        Me.lblSerialNumber.Location = New System.Drawing.Point(112, 45)
         Me.lblSerialNumber.Name = "lblSerialNumber"
         Me.lblSerialNumber.Size = New System.Drawing.Size(16, 20)
         Me.lblSerialNumber.TabIndex = 7
@@ -285,7 +303,7 @@ Partial Class Form1
         '
         Me.lblPCBver.AutoSize = True
         Me.lblPCBver.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblPCBver.Location = New System.Drawing.Point(69, 33)
+        Me.lblPCBver.Location = New System.Drawing.Point(112, 28)
         Me.lblPCBver.Name = "lblPCBver"
         Me.lblPCBver.Size = New System.Drawing.Size(16, 20)
         Me.lblPCBver.TabIndex = 6
@@ -295,7 +313,7 @@ Partial Class Form1
         '
         Me.lblFWver.AutoSize = True
         Me.lblFWver.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblFWver.Location = New System.Drawing.Point(69, 16)
+        Me.lblFWver.Location = New System.Drawing.Point(112, 11)
         Me.lblFWver.Name = "lblFWver"
         Me.lblFWver.Size = New System.Drawing.Size(16, 20)
         Me.lblFWver.TabIndex = 5
@@ -346,42 +364,11 @@ Partial Class Form1
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "FW ver"
         '
-        'GroupBox2
-        '
-        Me.GroupBox2.Controls.Add(Me.lblCALstatus2)
-        Me.GroupBox2.Controls.Add(Me.lblCALstatus)
-        Me.GroupBox2.Location = New System.Drawing.Point(735, 193)
-        Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(236, 57)
-        Me.GroupBox2.TabIndex = 11
-        Me.GroupBox2.TabStop = False
-        Me.GroupBox2.Text = "Calibration Status"
-        '
-        'lblCALstatus2
-        '
-        Me.lblCALstatus2.AutoSize = True
-        Me.lblCALstatus2.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblCALstatus2.Location = New System.Drawing.Point(7, 34)
-        Me.lblCALstatus2.Name = "lblCALstatus2"
-        Me.lblCALstatus2.Size = New System.Drawing.Size(15, 18)
-        Me.lblCALstatus2.TabIndex = 11
-        Me.lblCALstatus2.Text = "*"
-        '
-        'lblCALstatus
-        '
-        Me.lblCALstatus.AutoSize = True
-        Me.lblCALstatus.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblCALstatus.Location = New System.Drawing.Point(7, 16)
-        Me.lblCALstatus.Name = "lblCALstatus"
-        Me.lblCALstatus.Size = New System.Drawing.Size(15, 18)
-        Me.lblCALstatus.TabIndex = 10
-        Me.lblCALstatus.Text = "*"
-        '
         'btnPrintCAL
         '
         Me.btnPrintCAL.Enabled = False
         Me.btnPrintCAL.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnPrintCAL.Location = New System.Drawing.Point(1020, 115)
+        Me.btnPrintCAL.Location = New System.Drawing.Point(1072, 133)
         Me.btnPrintCAL.Name = "btnPrintCAL"
         Me.btnPrintCAL.Size = New System.Drawing.Size(114, 54)
         Me.btnPrintCAL.TabIndex = 12
@@ -392,67 +379,135 @@ Partial Class Form1
         '
         Me.myProgressBar1.Location = New System.Drawing.Point(6, 19)
         Me.myProgressBar1.Name = "myProgressBar1"
-        Me.myProgressBar1.Size = New System.Drawing.Size(214, 23)
+        Me.myProgressBar1.Size = New System.Drawing.Size(248, 23)
         Me.myProgressBar1.TabIndex = 13
         '
         'GroupBox3
         '
+        Me.GroupBox3.Controls.Add(Me.Label9)
+        Me.GroupBox3.Controls.Add(Me.Label8)
+        Me.GroupBox3.Controls.Add(Me.Label7)
         Me.GroupBox3.Controls.Add(Me.lblRecordsPerSecond)
         Me.GroupBox3.Controls.Add(Me.lblEEusage)
         Me.GroupBox3.Controls.Add(Me.myProgressBar1)
         Me.GroupBox3.Controls.Add(Me.lblRecordCount)
-        Me.GroupBox3.Location = New System.Drawing.Point(740, 257)
+        Me.GroupBox3.Location = New System.Drawing.Point(738, 257)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(231, 121)
+        Me.GroupBox3.Size = New System.Drawing.Size(289, 121)
         Me.GroupBox3.TabIndex = 14
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "EEPROM Status"
         '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(5, 95)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(103, 13)
+        Me.Label9.TabIndex = 18
+        Me.Label9.Text = "Records read/timing"
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(5, 75)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(87, 13)
+        Me.Label8.TabIndex = 17
+        Me.Label8.Text = "Records inserted"
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(4, 55)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(79, 13)
+        Me.Label7.TabIndex = 16
+        Me.Label7.Text = "EEPROM used"
+        '
         'lblRecordsPerSecond
         '
         Me.lblRecordsPerSecond.AutoSize = True
-        Me.lblRecordsPerSecond.Location = New System.Drawing.Point(5, 95)
+        Me.lblRecordsPerSecond.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblRecordsPerSecond.Location = New System.Drawing.Point(112, 95)
         Me.lblRecordsPerSecond.Name = "lblRecordsPerSecond"
-        Me.lblRecordsPerSecond.Size = New System.Drawing.Size(11, 13)
+        Me.lblRecordsPerSecond.Size = New System.Drawing.Size(16, 20)
         Me.lblRecordsPerSecond.TabIndex = 15
         Me.lblRecordsPerSecond.Text = "*"
         '
         'lblEEusage
         '
         Me.lblEEusage.AutoSize = True
-        Me.lblEEusage.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblEEusage.Location = New System.Drawing.Point(4, 55)
+        Me.lblEEusage.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblEEusage.Location = New System.Drawing.Point(112, 55)
         Me.lblEEusage.Name = "lblEEusage"
-        Me.lblEEusage.Size = New System.Drawing.Size(15, 20)
+        Me.lblEEusage.Size = New System.Drawing.Size(16, 20)
         Me.lblEEusage.TabIndex = 14
         Me.lblEEusage.Text = "*"
         '
-        'lblPerSecond
+        'btnDataFolders
         '
-        Me.lblPerSecond.AutoSize = True
-        Me.lblPerSecond.Location = New System.Drawing.Point(735, 22)
-        Me.lblPerSecond.Name = "lblPerSecond"
-        Me.lblPerSecond.Size = New System.Drawing.Size(39, 13)
-        Me.lblPerSecond.TabIndex = 15
-        Me.lblPerSecond.Text = "Label6"
+        Me.btnDataFolders.Location = New System.Drawing.Point(897, 31)
+        Me.btnDataFolders.Name = "btnDataFolders"
+        Me.btnDataFolders.Size = New System.Drawing.Size(75, 23)
+        Me.btnDataFolders.TabIndex = 16
+        Me.btnDataFolders.Text = "Data Folders"
+        Me.btnDataFolders.UseVisualStyleBackColor = True
+        '
+        'MenuStrip1
+        '
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.ToolsToolStripMenuItem, Me.HelpToolStripMenuItem})
+        Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
+        Me.MenuStrip1.Name = "MenuStrip1"
+        Me.MenuStrip1.Size = New System.Drawing.Size(1042, 24)
+        Me.MenuStrip1.TabIndex = 17
+        Me.MenuStrip1.Text = "MenuStrip1"
+        '
+        'FileToolStripMenuItem
+        '
+        Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
+        Me.FileToolStripMenuItem.Size = New System.Drawing.Size(37, 20)
+        Me.FileToolStripMenuItem.Text = "File"
+        '
+        'ToolsToolStripMenuItem
+        '
+        Me.ToolsToolStripMenuItem.Name = "ToolsToolStripMenuItem"
+        Me.ToolsToolStripMenuItem.Size = New System.Drawing.Size(47, 20)
+        Me.ToolsToolStripMenuItem.Text = "Tools"
+        '
+        'HelpToolStripMenuItem
+        '
+        Me.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem"
+        Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(44, 20)
+        Me.HelpToolStripMenuItem.Text = "Help"
+        '
+        'btnFindArduinoPort
+        '
+        Me.btnFindArduinoPort.Location = New System.Drawing.Point(897, 66)
+        Me.btnFindArduinoPort.Name = "btnFindArduinoPort"
+        Me.btnFindArduinoPort.Size = New System.Drawing.Size(75, 23)
+        Me.btnFindArduinoPort.TabIndex = 18
+        Me.btnFindArduinoPort.Text = "Find Port"
+        Me.btnFindArduinoPort.UseVisualStyleBackColor = True
         '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(982, 394)
-        Me.Controls.Add(Me.lblPerSecond)
+        Me.ClientSize = New System.Drawing.Size(1042, 394)
+        Me.Controls.Add(Me.btnFindArduinoPort)
+        Me.Controls.Add(Me.btnDataFolders)
         Me.Controls.Add(Me.GroupBox3)
         Me.Controls.Add(Me.btnPrintCAL)
         Me.Controls.Add(Me.btnEraseRead)
-        Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.GroupBox1)
-        Me.Controls.Add(Me.lblPercent)
         Me.Controls.Add(Me.ListBox1)
         Me.Controls.Add(Me.TabControl1)
         Me.Controls.Add(Me.btnSendata)
         Me.Controls.Add(Me.ComboBox1)
         Me.Controls.Add(Me.btnConnect)
+        Me.Controls.Add(Me.MenuStrip1)
+        Me.MainMenuStrip = Me.MenuStrip1
         Me.Name = "Form1"
         Me.Text = "Botron B8590 controller"
         Me.TabControl1.ResumeLayout(False)
@@ -460,10 +515,10 @@ Partial Class Form1
         Me.TabPage2.ResumeLayout(False)
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
-        Me.GroupBox2.ResumeLayout(False)
-        Me.GroupBox2.PerformLayout()
         Me.GroupBox3.ResumeLayout(False)
         Me.GroupBox3.PerformLayout()
+        Me.MenuStrip1.ResumeLayout(False)
+        Me.MenuStrip1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -488,9 +543,7 @@ Partial Class Form1
     Friend WithEvents TabPage2 As TabPage
     Friend WithEvents btnEraseRead As Button
     Friend WithEvents rtbData As RichTextBox
-    Friend WithEvents lblPercent As Label
     Friend WithEvents ColumnHeader9 As ColumnHeader
-    Friend WithEvents lblRecordCount As Label
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents lblPCBver As Label
     Friend WithEvents lblFWver As Label
@@ -502,13 +555,21 @@ Partial Class Form1
     Friend WithEvents lblCALdate As Label
     Friend WithEvents lblMFGdate As Label
     Friend WithEvents lblSerialNumber As Label
-    Friend WithEvents GroupBox2 As GroupBox
-    Friend WithEvents lblCALstatus As Label
     Friend WithEvents lblCALstatus2 As Label
     Friend WithEvents btnPrintCAL As Button
     Friend WithEvents myProgressBar1 As ProgressBar
     Friend WithEvents GroupBox3 As GroupBox
     Friend WithEvents lblEEusage As Label
-    Friend WithEvents lblPerSecond As Label
     Friend WithEvents lblRecordsPerSecond As Label
+    Friend WithEvents btnDataFolders As Button
+    Friend WithEvents Label6 As Label
+    Friend WithEvents Label7 As Label
+    Friend WithEvents lblRecordCount As Label
+    Friend WithEvents Label8 As Label
+    Friend WithEvents Label9 As Label
+    Friend WithEvents MenuStrip1 As MenuStrip
+    Friend WithEvents FileToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolsToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents HelpToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents btnFindArduinoPort As Button
 End Class

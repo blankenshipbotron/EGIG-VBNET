@@ -22,3 +22,4 @@ C:\Users\Mikey\OneDrive\Documents\Visual Studio 2022\Projects\EGIG-VBNET\EGIG-SM
 C:\Users\Mikey\OneDrive\Documents\Visual Studio 2022\Projects\EGIG-VBNET\EGIG-SMALL\obj\Debug\EGIG-SMALL.exe
 C:\Users\Mikey\OneDrive\Documents\Visual Studio 2022\Projects\EGIG-VBNET\EGIG-SMALL\obj\Debug\EGIG-SMALL.xml
 C:\Users\Mikey\OneDrive\Documents\Visual Studio 2022\Projects\EGIG-VBNET\EGIG-SMALL\obj\Debug\EGIG-SMALL.pdb
+C:\Users\Mikey\OneDrive\Documents\Visual Studio 2022\Projects\EGIG-VBNET\EGIG-SMALL\obj\Debug\EGIG_SMALL.Form2.resources
