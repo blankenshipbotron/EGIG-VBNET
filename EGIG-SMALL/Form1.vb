@@ -52,6 +52,8 @@ Public Class Form1
 
     End Sub
 
+
+
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
         ' Populate the combo box with available serial ports
         ComboBox1.Items.AddRange(SerialPort.GetPortNames())
@@ -100,6 +102,8 @@ Public Class Form1
             'Me.Invoke(Sub() TextBox1.AppendText("Error receiving data: " & ex.Message & vbCrLf))
         End Try
     End Sub
+
+
 
     Function parseData(ByVal data As String)
         Dim inputString As String = data
@@ -153,6 +157,7 @@ Public Class Form1
                       End Try
                   End Sub)
     End Function
+
 
     Function displayRTB(ByVal myData As String)
         Me.Invoke(Sub()
@@ -468,10 +473,15 @@ Public Class Form1
             detailsForm.lblCondRange.ForeColor = Color.LightGreen
             detailsForm.lblCondRange.Text = "CONDUCTIVE"
         End If
-        If myDecimaCondRange > 1000000000 And myDecimaCondRange < 1000000000000 Then
+        If myDecimaCondRange > 1000000 And myDecimaCondRange <= 100000000000 Then
             detailsForm.lblCondRange.BackColor = Color.Black
             detailsForm.lblCondRange.ForeColor = Color.Yellow
             detailsForm.lblCondRange.Text = "DISSIPATIVE"
+        End If
+        If myDecimaCondRange > 1000000000001 And myDecimaCondRange <= 10000000000001 Then
+            detailsForm.lblCondRange.BackColor = Color.Black
+            detailsForm.lblCondRange.ForeColor = Color.Red
+            detailsForm.lblCondRange.Text = "INSULATIVE"
         End If
 
 
@@ -548,9 +558,11 @@ Public Class Form1
         For Each port As String In ports
             Using serialPort As New SerialPort(port, 115200, Parity.None, 8, StopBits.One)
                 Try
+                    serialPort.DtrEnable = True
                     serialPort.Open()
+
                     serialPort.WriteLine("WHAT_BOTRON_MODEL_ARE_YOU")
-                    serialPort.ReadTimeout = 1000 ' Set a timeout (1 second in this example)
+                    serialPort.ReadTimeout = 2000 ' Set a timeout (1 second in this example)
                     Dim myReceive As String = serialPort.ReadLine()
                     MessageBox.Show(serialPort.ReadLine().Trim())
                     If serialPort.ReadLine().Trim() = "I_AM_B8590" Then

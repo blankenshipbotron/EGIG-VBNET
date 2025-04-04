@@ -253,7 +253,7 @@ Partial Class Form2
         Me.GroupBox1.Controls.Add(Me.lblNumber)
         Me.GroupBox1.Location = New System.Drawing.Point(12, 13)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(282, 286)
+        Me.GroupBox1.Size = New System.Drawing.Size(297, 286)
         Me.GroupBox1.TabIndex = 18
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Data detail"
@@ -272,7 +272,7 @@ Partial Class Form2
         '
         Me.lblSciNotation.AutoSize = True
         Me.lblSciNotation.Font = New System.Drawing.Font("Courier New", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.lblSciNotation.Location = New System.Drawing.Point(168, 306)
+        Me.lblSciNotation.Location = New System.Drawing.Point(163, 306)
         Me.lblSciNotation.Name = "lblSciNotation"
         Me.lblSciNotation.Size = New System.Drawing.Size(18, 18)
         Me.lblSciNotation.TabIndex = 19
@@ -292,7 +292,7 @@ Partial Class Form2
         '
         Me.lblSciPrefix.AutoSize = True
         Me.lblSciPrefix.Font = New System.Drawing.Font("Courier New", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.lblSciPrefix.Location = New System.Drawing.Point(168, 322)
+        Me.lblSciPrefix.Location = New System.Drawing.Point(163, 322)
         Me.lblSciPrefix.Name = "lblSciPrefix"
         Me.lblSciPrefix.Size = New System.Drawing.Size(18, 18)
         Me.lblSciPrefix.TabIndex = 21
@@ -300,7 +300,7 @@ Partial Class Form2
         '
         'PictureBox1
         '
-        Me.PictureBox1.Location = New System.Drawing.Point(315, 71)
+        Me.PictureBox1.Location = New System.Drawing.Point(358, 42)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(100, 40)
         Me.PictureBox1.TabIndex = 18
@@ -310,7 +310,7 @@ Partial Class Form2
         '
         Me.lblCondRange.AutoSize = True
         Me.lblCondRange.Font = New System.Drawing.Font("Courier New", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblCondRange.Location = New System.Drawing.Point(40, 349)
+        Me.lblCondRange.Location = New System.Drawing.Point(46, 349)
         Me.lblCondRange.Name = "lblCondRange"
         Me.lblCondRange.Size = New System.Drawing.Size(34, 36)
         Me.lblCondRange.TabIndex = 23
@@ -321,7 +321,7 @@ Partial Class Form2
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(302, 393)
+        Me.ClientSize = New System.Drawing.Size(313, 393)
         Me.Controls.Add(Me.lblCondRange)
         Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.Label11)
